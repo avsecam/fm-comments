@@ -18,20 +18,14 @@ export default function CommentBlock({ comment }: Props) {
           </div>
         </div>
       ) : (
-				<></>
-			)}
+        <></>
+      )}
     </div>
   );
 }
 
 function Comment({ comment }: Props) {
-  const {
-    score,
-    user: { username },
-    createdAt,
-    content,
-    replies,
-  } = comment;
+  const { score, user, createdAt, content, replies } = comment;
 
   return (
     <article className="flex flex-row bg-white p-6 mt-5 gap-6 rounded-lg">
@@ -50,11 +44,18 @@ function Comment({ comment }: Props) {
           height={iconSize}
         />
       </aside>
-      <div className="flex flex-1 flex-col justify-around">
-        <div className="bg-red-300">
+      <div className="flex flex-1 flex-col justify-around gap-2">
+        <div>
           <div className="flex">
-            <div className="flex flex-1">
-              <span className="font-medium">{username}</span>
+            <div className="flex flex-1 items-center gap-3">
+              <Image
+                alt={`Profile picture of ${user.username}`}
+                src={user.image.png}
+								width={iconSize}
+								height={iconSize}
+								className="w-6 h-6"
+              />
+              <span className="font-medium">{user.username}</span>
               <span className="text-grayishBlue">{createdAt}</span>
             </div>
             <div className="flex flex-row items-center text-moderateBlue font-bold gap-2">
