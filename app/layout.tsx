@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./global.css";
+import { Provider } from "react-redux";
+import StoreProvider from "./StoreProvider";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -19,7 +21,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      <body className={`${rubik.className} bg-veryLightGray`}>{children}</body>
+      <StoreProvider>
+        <body className={`${rubik.className} bg-veryLightGray`}>
+          {children}
+        </body>
+      </StoreProvider>
     </html>
   );
 }
